@@ -13,9 +13,9 @@
 class Ezmk < Formula
   desc "A simple C/C++ build tool (GCC/Clang/MSVC)"
   homepage "https://github.com/3667808244/EazyMake"
-  url "https://github.com/3667808244/EazyMake/releases/download/v1.1.0/ezmk-linux-x64.tar.gz"
-  sha256 "938f7ca8b15f5a4a3f383c2866a8997d9de5e9d841f0e477d65ff726e2727bf7"
-  version "1.1.0"
+  url "https://github.com/3667808244/EazyMake/releases/download/v1.1.1/ezmk-linux-x64.tar.gz"
+  sha256 "c9ed14a5b88fac0ddd0118c66cc4924535fc9fa9fa0fc9e114cbaa5c0dbfb13e"
+  version "1.1.1"
   license "MIT"
 
   def install
