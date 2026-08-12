@@ -1,25 +1,42 @@
 # EazyMake Homebrew formula
 #
-# Installs the prebuilt linux-x64 binary from the EazyMake GitHub Release.
-# The release tarball ezmk-linux-x64.tar.gz contains `ezmk` (the binary)
-# and `_ezmk` (zsh completion).
+# Installs the prebuilt binary for the current platform from the EazyMake
+# GitHub Release. Each tarball (ezmk-<os>-<arch>.tar.gz) contains `ezmk`
+# (the binary) and `_ezmk` (zsh completion).
 #
 #   brew tap 3667808244/eazymake
 #   brew install ezmk
 #
 # Repo: https://github.com/3667808244/EazyMake
 # Release assets: https://github.com/3667808244/EazyMake/releases
+#
+# Note: macOS Intel (x64) has no prebuilt asset yet — the `macos-13` runner is
+# not allocated on GitHub's free tier, so the x64 job stalls and the release
+# never carries `ezmk-macos-x64.tar.gz`. Intel Macs get a clean "unsupported
+# on this architecture" error from brew until a binary is published.
 
 class Ezmk < Formula
   desc "A simple C/C++ build tool (GCC/Clang/MSVC)"
   homepage "https://github.com/3667808244/EazyMake"
-  url "https://github.com/3667808244/EazyMake/releases/download/v1.1.1/ezmk-linux-x64.tar.gz"
-  sha256 "c9ed14a5b88fac0ddd0118c66cc4924535fc9fa9fa0fc9e114cbaa5c0dbfb13e"
-  version "1.1.1"
+  version "1.1.3"
   license "MIT"
 
+  on_macos do
+    if Hardware::CPU.arm?
+      url "https://github.com/3667808244/EazyMake/releases/download/v1.1.3/ezmk-macos-arm64.tar.gz"
+      sha256 "4db57a1e2aa2ddb8205081cf1cd8ebe1fd9f5c414c98b30cb6b40ffc86ba9da4"
+    end
+  end
+
+  on_linux do
+    url "https://github.com/3667808244/EazyMake/releases/download/v1.1.3/ezmk-linux-x64.tar.gz"
+    sha256 "205d3beba8001011622e31867d37c3ba985b95d29e7dcbe7a19cff9487d6e3a5"
+  end
+
   def install
-    chdir "ezmk-linux-x64" do
+    # Tarball root dir carries the platform triple (e.g. ezmk-macos-arm64).
+    dir = stable.url.split("/").last.sub(/\.tar\.gz$/, "")
+    chdir dir do
       bin.install "ezmk"
       zsh_completion.install "_ezmk"
     end
