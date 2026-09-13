@@ -19,19 +19,19 @@
 class Ezmk < Formula
   desc "A simple C/C++ build tool (GCC/Clang/MSVC)"
   homepage "https://github.com/3667808244/EazyMake"
-  version "1.4.1"
+  version "1.4.2"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/3667808244/EazyMake/releases/download/v1.4.1/ezmk-macos-arm64.tar.gz"
-      sha256 "e7c2ca8734b31c2526487fd77f9090879b9b6c03fb2eb1be8bb93c858b59b962"
+      url "https://github.com/3667808244/EazyMake/releases/download/v1.4.2/ezmk-macos-arm64.tar.gz"
+      sha256 "a6df63ff0b31621a4bad171d82dcba095abb9c85734ff8d0a9f10693a8c1f5b4"
     end
   end
 
   on_linux do
-    url "https://github.com/3667808244/EazyMake/releases/download/v1.4.1/ezmk-linux-x64.tar.gz"
-    sha256 "debcc1f32e1a0f38b2c0dbe4498f0a3387184be8ce4d62754d5ac00b29c81cfc"
+    url "https://github.com/3667808244/EazyMake/releases/download/v1.4.2/ezmk-linux-x64.tar.gz"
+    sha256 "a4cb650614a982ca1fa10b76020063fab0a8774e83fbde44c28cdd86b50ce2df"
   end
 
   def install
